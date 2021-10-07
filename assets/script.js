@@ -10,10 +10,7 @@
       event.preventDefault();
 
       const state = event.target.getAttribute('data-state');
-      
-      if(event.detail < 2) {
-        setSelectedState(state);
-      }
+      setSelectedState(state);
     });
 
     element.addEventListener('mouseover', toggleHoverOnMapBtn);
@@ -27,10 +24,7 @@
         event.preventDefault();
   
         const state = event.target.closest('.state-map-btn').getAttribute('data-state');
-        
-        if(event.detail < 2) {
-          setSelectedState(state);
-        }
+        setSelectedState(state);
       });
       
       element.addEventListener('mouseover', toggleHoverOnNameBtn);
@@ -57,7 +51,7 @@
     element.setAttribute(
       'class',
       currentClasses.includes('hover')
-        ?  currentClasses.replace('hover', '').replace(/\s+/g, ' ').trim()
+        ? currentClasses.replace(' hover', '')
         : currentClasses + ' hover'
     );
   }
@@ -75,16 +69,14 @@
       previousSelectedMapBtn.setAttribute(
         'class',
         previousSelectedMapBtn.getAttribute('class')
-                              .replace('selected', '')
-                              .replace(/\s+/g, ' ').trim()
+                              .replaceAll(' selected', '')
       );
 
       const previousSelectedNameBtn = document.getElementById(selectedState + 'nameBtn');
       previousSelectedNameBtn.setAttribute(
         'class',
         previousSelectedNameBtn.getAttribute('class')
-                               .replace('selected', '')
-                               .replace(/\s+/g, ' ').trim()
+                               .replaceAll(' selected', '')
       );
     }
 
