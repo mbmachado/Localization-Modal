@@ -28,9 +28,11 @@
       border-radius: 4px;
       background-color: #fff;
       text-decoration: none;
+      text-align: left;
       display: block;
       color: #333;
       padding: 5px 0 5px 10px;
+      margin-bottom: 2px;
       transition: all .2s;
     }
 
@@ -51,6 +53,22 @@
     a.state-name-btn:focus {
       text-decoration: none;
     }
+
+    @media screen and (max-width:  768px) {
+      a.state-name-btn {
+        text-align: center;
+        padding: 5px 0;
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-bottom: 0px;
+      }
+
+      h4.modal-title, p.modal-description {
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -58,7 +76,12 @@
     <div class="row">
       <div class="col-md-12">
         <div class="padding-y">
-          <button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal">Alterar</button>
+          <button class="btn btn-default"
+                  type="button"
+                  data-toggle="modal"
+                  data-backdrop="static"
+                  data-keyboard="false"
+                  data-target="#myModal">Alterar</button>
         </div>
       </div>
     </div>
@@ -68,44 +91,46 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <button id="localizationModalCloseBtn" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
           <h4 class="modal-title">Bem Vindo(a)!</h4>
         </div>
         <div class="modal-body">
           <div class="row">
             <div class="col-md-6">
-              <p>Por favor, confirme sua região para exibir melhores ofertas:</p>
+              <p class="modal-description">Por favor, confirme sua região para exibir melhores ofertas:</p>
               <div class="row">
-                <div class="col-sm-6"><a id="ACnameBtn" href="#" data-state="AC" class="state-name-btn">Acre</a></div>
-                <div class="col-sm-6"><a id="ALnameBtn" href="#" data-state="AL" class="state-name-btn">Alagoas</a></div>
-                <div class="col-sm-6"><a id="APnameBtn" href="#" data-state="AP" class="state-name-btn">Amapá</a></div>
-                <div class="col-sm-6"><a id="AMnameBtn" href="#" data-state="AM" class="state-name-btn">Amazonas</a></div>
-                <div class="col-sm-6"><a id="BAnameBtn" href="#" data-state="BA" class="state-name-btn">Bahia</a></div>
-                <div class="col-sm-6"><a id="CEnameBtn" href="#" data-state="CE" class="state-name-btn">Ceará</a></div>
-                <div class="col-sm-6"><a id="DFnameBtn" href="#" data-state="DF" class="state-name-btn">Distrito Federal</a></div>
-                <div class="col-sm-6"><a id="ESnameBtn" href="#" data-state="ES" class="state-name-btn">Espírito Santo</a></div>
-                <div class="col-sm-6"><a id="GOnameBtn" href="#" data-state="GO" class="state-name-btn">Goiás</a></div>
-                <div class="col-sm-6"><a id="MAnameBtn" href="#" data-state="MA" class="state-name-btn">Maranhão</a></div>
-                <div class="col-sm-6"><a id="MTnameBtn" href="#" data-state="MT" class="state-name-btn">Mato Grosso</a></div>
-                <div class="col-sm-6"><a id="MSnameBtn" href="#" data-state="MS" class="state-name-btn">Mato Grosso do Sul</a></div>
-                <div class="col-sm-6"><a id="MGnameBtn" href="#" data-state="MG" class="state-name-btn">Minas Gerais</a></div>
-                <div class="col-sm-6"><a id="PAnameBtn" href="#" data-state="PA" class="state-name-btn">Pará</a></div>
-                <div class="col-sm-6"><a id="PBnameBtn" href="#" data-state="PB" class="state-name-btn">Paraíba</a></div>
-                <div class="col-sm-6"><a id="PRnameBtn" href="#" data-state="PR" class="state-name-btn">Paraná</a></div>
-                <div class="col-sm-6"><a id="PEnameBtn" href="#" data-state="PE" class="state-name-btn">Pernambuco</a></div>
-                <div class="col-sm-6"><a id="PInameBtn" href="#" data-state="PI" class="state-name-btn">Piauí</a></div>
-                <div class="col-sm-6"><a id="RJnameBtn" href="#" data-state="RJ" class="state-name-btn">Rio de Janeiro</a></div>
-                <div class="col-sm-6"><a id="RNnameBtn" href="#" data-state="RN" class="state-name-btn">Rio Grande do Norte</a></div>
-                <div class="col-sm-6"><a id="RSnameBtn" href="#" data-state="RS" class="state-name-btn">Rio Grande do Sul</a></div>
-                <div class="col-sm-6"><a id="ROnameBtn" href="#" data-state="RO" class="state-name-btn">Rondônia</a></div>
-                <div class="col-sm-6"><a id="RRnameBtn" href="#" data-state="RR" class="state-name-btn">Roraima</a></div>
-                <div class="col-sm-6"><a id="SCnameBtn" href="#" data-state="SC" class="state-name-btn">Santa Catarina</a></div>
-                <div class="col-sm-6"><a id="SPnameBtn" href="#" data-state="SP" class="state-name-btn">São Paulo</a></div>
-                <div class="col-sm-6"><a id="SEnameBtn" href="#" data-state="SE" class="state-name-btn">Sergipe</a></div>
-                <div class="col-sm-6"><a id="TOnameBtn" href="#" data-state="TO" class="state-name-btn">Tocantins</a></div>
+                <div class="col-xs-6"><a id="ACnameBtn" href="#" data-state="AC" class="state-name-btn">Acre</a></div>
+                <div class="col-xs-6"><a id="ALnameBtn" href="#" data-state="AL" class="state-name-btn">Alagoas</a></div>
+                <div class="col-xs-6"><a id="APnameBtn" href="#" data-state="AP" class="state-name-btn">Amapá</a></div>
+                <div class="col-xs-6"><a id="AMnameBtn" href="#" data-state="AM" class="state-name-btn">Amazonas</a></div>
+                <div class="col-xs-6"><a id="BAnameBtn" href="#" data-state="BA" class="state-name-btn">Bahia</a></div>
+                <div class="col-xs-6"><a id="CEnameBtn" href="#" data-state="CE" class="state-name-btn">Ceará</a></div>
+                <div class="col-xs-6"><a id="DFnameBtn" href="#" data-state="DF" class="state-name-btn">Distrito Federal</a></div>
+                <div class="col-xs-6"><a id="ESnameBtn" href="#" data-state="ES" class="state-name-btn">Espírito Santo</a></div>
+                <div class="col-xs-6"><a id="GOnameBtn" href="#" data-state="GO" class="state-name-btn">Goiás</a></div>
+                <div class="col-xs-6"><a id="MAnameBtn" href="#" data-state="MA" class="state-name-btn">Maranhão</a></div>
+                <div class="col-xs-6"><a id="MTnameBtn" href="#" data-state="MT" class="state-name-btn">Mato Grosso</a></div>
+                <div class="col-xs-6"><a id="MSnameBtn" href="#" data-state="MS" class="state-name-btn">Mato Grosso do Sul</a></div>
+                <div class="col-xs-6"><a id="MGnameBtn" href="#" data-state="MG" class="state-name-btn">Minas Gerais</a></div>
+                <div class="col-xs-6"><a id="PAnameBtn" href="#" data-state="PA" class="state-name-btn">Pará</a></div>
+                <div class="col-xs-6"><a id="PBnameBtn" href="#" data-state="PB" class="state-name-btn">Paraíba</a></div>
+                <div class="col-xs-6"><a id="PRnameBtn" href="#" data-state="PR" class="state-name-btn">Paraná</a></div>
+                <div class="col-xs-6"><a id="PEnameBtn" href="#" data-state="PE" class="state-name-btn">Pernambuco</a></div>
+                <div class="col-xs-6"><a id="PInameBtn" href="#" data-state="PI" class="state-name-btn">Piauí</a></div>
+                <div class="col-xs-6"><a id="RJnameBtn" href="#" data-state="RJ" class="state-name-btn">Rio de Janeiro</a></div>
+                <div class="col-xs-6"><a id="RNnameBtn" href="#" data-state="RN" class="state-name-btn">Rio Grande do Norte</a></div>
+                <div class="col-xs-6"><a id="RSnameBtn" href="#" data-state="RS" class="state-name-btn">Rio Grande do Sul</a></div>
+                <div class="col-xs-6"><a id="ROnameBtn" href="#" data-state="RO" class="state-name-btn">Rondônia</a></div>
+                <div class="col-xs-6"><a id="RRnameBtn" href="#" data-state="RR" class="state-name-btn">Roraima</a></div>
+                <div class="col-xs-6"><a id="SCnameBtn" href="#" data-state="SC" class="state-name-btn">Santa Catarina</a></div>
+                <div class="col-xs-6"><a id="SPnameBtn" href="#" data-state="SP" class="state-name-btn">São Paulo</a></div>
+                <div class="col-xs-6"><a id="SEnameBtn" href="#" data-state="SE" class="state-name-btn">Sergipe</a></div>
+                <div class="col-xs-6"><a id="TOnameBtn" href="#" data-state="TO" class="state-name-btn">Tocantins</a></div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 hidden-xs hidden-sm">
               <svg version="1.1" id="svg-map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="400px" height="408px" viewBox="0 0 450 460" enable-background="new 0 0 450 460" xml:space="preserve">
                 <g>
                   <a id="TOmapBtn" xlink:href="#" data-state="TO" class="state-map-btn">
@@ -424,7 +449,7 @@
           </div>          
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Confirmar</button>
+          <button id="stateConfirmationBtn" type="button" class="btn btn-primary" data-dismiss="modal" disabled>Confirmar</button>
         </div>
       </div>
     </div>

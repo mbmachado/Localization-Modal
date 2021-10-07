@@ -1,7 +1,7 @@
 (() => {
 
   let selectedState;
-  const isMobile = window.matchMedia('(max-width: 600px)').matches;
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
   const stateNameButtons = document.querySelectorAll('.state-name-btn');
   const stateMapButtons = document.querySelectorAll('.state-map-btn');
 
@@ -10,27 +10,42 @@
       event.preventDefault();
 
       const state = event.target.getAttribute('data-state');
-      setSelectedState(state);
+      
+      if(event.detail < 2) {
+        setSelectedState(state);
+      }
     });
 
     element.addEventListener('mouseover', toggleHoverOnMapBtn);
     element.addEventListener('mouseout', toggleHoverOnMapBtn);
   });
 
-  stateMapButtons.forEach(element => {
-    element.addEventListener('click', event => {
-      event.preventDefault();
 
-      const state = event.target.closest('.state-map-btn').getAttribute('data-state');
-      setSelectedState(state);
+  if(!isMobile) {
+    stateMapButtons.forEach(element => {
+      element.addEventListener('click', event => {
+        event.preventDefault();
+  
+        const state = event.target.closest('.state-map-btn').getAttribute('data-state');
+        
+        if(event.detail < 2) {
+          setSelectedState(state);
+        }
+      });
+      
+      element.addEventListener('mouseover', toggleHoverOnNameBtn);
+      element.addEventListener('mouseout', toggleHoverOnNameBtn);
     });
-    
-    element.addEventListener('mouseover', toggleHoverOnNameBtn);
-    element.addEventListener('mouseout', toggleHoverOnNameBtn);
-  });
+  }
 
-  function toggleHoverOnNameBtn(e) {
-    const state = e.target.closest('.state-map-btn').getAttribute('data-state');
+  document.getElementById('stateConfirmationBtn')
+          .addEventListener('click', preventModalDismissing);
+
+  document.getElementById('localizationModalCloseBtn')
+          .addEventListener('click', preventModalDismissing);
+
+  function toggleHoverOnNameBtn(event) {
+    const state = event.target.closest('.state-map-btn').getAttribute('data-state');
     const element = document.getElementById(state + 'nameBtn');
     
     toggleHoverOnElement(element);
@@ -47,8 +62,8 @@
     );
   }
 
-  function toggleHoverOnMapBtn(e) {
-    const state = e.target.getAttribute('data-state');
+  function toggleHoverOnMapBtn(event) {
+    const state = event.target.getAttribute('data-state');
     const element = document.getElementById(state + 'mapBtn');
     
     toggleHoverOnElement(element);
@@ -68,8 +83,8 @@
       previousSelectedNameBtn.setAttribute(
         'class',
         previousSelectedNameBtn.getAttribute('class')
-                              .replace('selected', '')
-                              .replace(/\s+/g, ' ').trim()
+                               .replace('selected', '')
+                               .replace(/\s+/g, ' ').trim()
       );
     }
 
@@ -80,6 +95,19 @@
     selectedNameBtn.setAttribute('class', selectedNameBtn.getAttribute('class') + ' selected');
 
     selectedState = state;
+    enableConfirmationBtn();
+  }
+
+  function enableConfirmationBtn() {
+    document.getElementById('stateConfirmationBtn').removeAttribute('disabled');
+  }
+
+  function preventModalDismissing(event) {
+    if(!selectedState) {
+      event.stopImmediatePropagation();
+
+      window.alert('É preciso selecionar um estado primeiro.');
+    }
   }
 
 })();
